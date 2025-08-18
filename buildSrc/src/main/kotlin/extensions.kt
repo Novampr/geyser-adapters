@@ -62,7 +62,7 @@ fun Project.minecraftVersion(version: String): Map<String, String> {
 fun Project.minecraftVersion(version: String, bonusData: Map<String, String>): Map<String, String> {
     val metaProperties = HashMap<String, String>()
     metaProperties["id"] = "geyser_modded_adapters_${version.replace('.', '_')}"
-    metaProperties["version"] = version
+    metaProperties["minecraft_version"] = version
 
     val fabricLoaderVersion = "0.17.2"
 
@@ -77,26 +77,17 @@ fun Project.minecraftVersion(version: String, bonusData: Map<String, String>): M
         platformSetupLoomIde()
     }
 
-    tasks {
-        withType<ProcessResources> {
-            filesMatching(listOf("fabric.mod.json", "neoforge.mods.toml")) {
-                expand(
-                    "id" to metaProperties["id"],
-                    "minecraft-version" to metaProperties["version"],
-                    "version" to version,
-                    "name" to "Geyser Mod Adapter",
-                    "description" to "An adapter to access version-specific data in modded versions of Minecraft.",
-                    "author" to "GeyserMC",
-                    "website" to "https://geysermc.org",
-                    "license" to "MIT"
-                )
-
-                bonusData.forEach { entry ->
-                    expand(entry.key, entry.value)
-                }
-            }
-        }
-    }
+    metaProperties.putAll(bonusData)
+    metaProperties.putAll(
+        mapOf(
+            "name" to "Geyser Mod Adapter",
+            "description" to "An adapter to access version-specific data in modded versions of Minecraft.",
+            "author" to "GeyserMC",
+            "website" to "https://geysermc.org",
+            "license" to "MIT",
+            "version" to this.version.toString()
+        )
+    )
 
     return metaProperties
 }

@@ -28,7 +28,7 @@ plugins {
 }
 
 val neoVersion = "21.5.91"
-val metaProperties = minecraftVersion("1.21.5", mapOf("neoVersion" to neoVersion))
+val metaProperties = minecraftVersion("1.21.5", mapOf("neo_version" to neoVersion))
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -48,4 +48,12 @@ dependencies {
 
     api(project(":modded_common_v1_21_5", configuration = "namedElements"))
     shadowCommon(project(":modded_common_v1_21_5", configuration = "transformProductionNeoForge"))
+}
+
+tasks {
+    withType<ProcessResources> {
+        filesMatching("META-INF/neoforge.mods.toml") {
+            expand(metaProperties)
+        }
+    }
 }

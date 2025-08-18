@@ -23,7 +23,7 @@ versionRange="[${neo_version},)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${id}]]
 modId="minecraft"
 type="required"
 versionRange="[${minecraft_version},)"

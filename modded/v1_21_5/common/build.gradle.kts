@@ -35,6 +35,11 @@ java {
     }
 }
 
+architectury {
+    platformSetupLoomIde()
+    common("fabric", "neoforge")
+}
+
 minecraftVersion("1.21.5")
 
 dependencies {

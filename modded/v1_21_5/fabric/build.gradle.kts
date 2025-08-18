@@ -52,11 +52,7 @@ dependencies {
 tasks {
     withType<ProcessResources> {
         filesMatching("fabric.mod.json") {
-            expand(
-                "id" to metaProperties["id"],
-                "minecraft-version" to metaProperties["version"],
-                "version" to version
-            )
+            expand(metaProperties)
         }
     }
 }
