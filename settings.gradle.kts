@@ -26,3 +26,10 @@ include(":paper:all")
 include(":paper:base")
 include(":paper:v766")
 include(":paper:v768")
+
+// For whatever reason, the name cannot be ":modded:v1_21_7:common", the fabric and neoforge modules won't
+// be able to find the module, but if the name is unique like this, it's fine
+include(":modded_common_v1_21_7")
+project(":modded_common_v1_21_7").projectDir = file("modded/v1_21_7/common")
+include(":modded:v1_21_7:fabric")
+include(":modded:v1_21_7:neoforge")
