@@ -45,8 +45,8 @@ architectury {
 dependencies {
     modApi("net.fabricmc.fabric-api:fabric-api:0.128.2+1.21.5")
 
-    api(project(path = ":modded_common_v1_21_7", configuration = "namedElements"))
-    shadowCommon(project(path = ":modded_common_v1_21_7", configuration = "transformProductionFabric"))
+    api(project(path = ":modded_common_v1_21_5", configuration = "namedElements"))
+    shadowCommon(project(path = ":modded_common_v1_21_5", configuration = "transformProductionFabric"))
 }
 
 tasks {

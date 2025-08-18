@@ -46,6 +46,6 @@ architectury {
 dependencies {
     neoForge("net.neoforged:neoforge:$neoVersion")
 
-    api(project(":modded_common_v1_21_7", configuration = "namedElements"))
-    shadowCommon(project(":modded_common_v1_21_7", configuration = "transformProductionNeoForge"))
+    api(project(":modded_common_v1_21_5", configuration = "namedElements"))
+    shadowCommon(project(":modded_common_v1_21_5", configuration = "transformProductionNeoForge"))
 }
