@@ -37,10 +37,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class CommandManagerAdapter_v1_21_5 extends CommandManagerAdapter<CommandSourceStack, ServerPlayer> {
-    public CommandManagerAdapter_v1_21_5() {
-        CommandManagerAdapter.
-    }
-
     @Override
     public <T> CommandManager<T> getCommandManager(
             Function<CommandSenderDefinition, T> converter,
