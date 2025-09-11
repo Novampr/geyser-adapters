@@ -43,8 +43,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class WorldAdapter_v1_21_5 extends WorldAdapter<ServerLevel> {
-    public static MinecraftServer server = null;
-
     @Override
     public int getBlockAt(ServerLevel world, int x, int y, int z) {
         if (y < world.getMinY()) {
@@ -67,9 +65,9 @@ public class WorldAdapter_v1_21_5 extends WorldAdapter<ServerLevel> {
 
     @Override
     public String[] getBiomeSuggestions(boolean tags) {
-        if (server == null) return new String[]{};
+        if (GeyserAdapter_v1_21_5.getServer() == null) return new String[]{};
 
-        Registry<Biome> registry = server.registryAccess()
+        Registry<Biome> registry = GeyserAdapter_v1_21_5.getServer().registryAccess()
                 .lookupOrThrow(Registries.BIOME);
         if (!tags) {
             return getBiomes(registry).toArray(String[]::new);

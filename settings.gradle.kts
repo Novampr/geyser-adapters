@@ -33,3 +33,8 @@ include(":modded_common_v1_21_5")
 project(":modded_common_v1_21_5").projectDir = file("modded/v1_21_5/common")
 include(":modded:v1_21_5:fabric")
 include(":modded:v1_21_5:neoforge")
+
+include(":modded_common_v1_21_1")
+project(":modded_common_v1_21_1").projectDir = file("modded/v1_21_1/common")
+include(":modded:v1_21_1:fabric")
+include(":modded:v1_21_1:neoforge")

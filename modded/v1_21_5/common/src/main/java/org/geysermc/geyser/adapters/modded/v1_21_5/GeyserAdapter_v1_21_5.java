@@ -23,18 +23,20 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.adapters.fabric.v1_21_5;
+package org.geysermc.geyser.adapters.modded.v1_21_5;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import org.geysermc.geyser.adapters.CommandManagerAdapter;
-import org.geysermc.geyser.adapters.modded.v1_21_5.GeyserAdapter_v1_21_5;
-import org.geysermc.geyser.adapters.modded.v1_21_5.WorldAdapter_v1_21_5;
+import net.minecraft.server.MinecraftServer;
 
-public class Fabric_v1_21_5 implements ModInitializer {
-    @Override
-    public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STARTING.register(GeyserAdapter_v1_21_5::setServer);
-        CommandManagerAdapter.set(new FabricCommandManagerAdapter_v1_21_5());
+public class GeyserAdapter_v1_21_5 {
+    private static MinecraftServer server;
+
+    public static void setServer(MinecraftServer server) {
+        if (GeyserAdapter_v1_21_5.server != null) throw new IllegalStateException("Server is already defined.");
+
+        GeyserAdapter_v1_21_5.server = server;
+    }
+
+    public static MinecraftServer getServer() {
+        return server;
     }
 }

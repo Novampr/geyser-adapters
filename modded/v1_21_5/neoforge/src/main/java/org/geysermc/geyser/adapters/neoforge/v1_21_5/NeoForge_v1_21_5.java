@@ -29,13 +29,17 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.geysermc.geyser.adapters.CommandManagerAdapter;
+import org.geysermc.geyser.adapters.modded.v1_21_5.GeyserAdapter_v1_21_5;
 import org.geysermc.geyser.adapters.modded.v1_21_5.WorldAdapter_v1_21_5;
 
 @Mod("geyser_modded_adapters_1_21_5")
 public class NeoForge_v1_21_5 {
     public NeoForge_v1_21_5(IEventBus bus, ModContainer modContainer) {
         bus.addListener(ServerStartingEvent.class, event -> {
-            WorldAdapter_v1_21_5.server = event.getServer();
+            GeyserAdapter_v1_21_5.setServer(event.getServer());
         });
+
+        CommandManagerAdapter.set(new NeoForgeCommandManagerAdapter_v1_21_5());
     }
 }

@@ -48,6 +48,10 @@ dependencies {
 
     api(project(":modded_common_v1_21_5", configuration = "namedElements"))
     shadowCommon(project(":modded_common_v1_21_5", configuration = "transformProductionNeoForge"))
+
+    compileOnly(project(":common"))
+    modImplementation("org.incendo:cloud-neoforge:2.0.0-beta.12")
+    include("org.incendo:cloud-neoforge:2.0.0-beta.12")
 }
 
 tasks {

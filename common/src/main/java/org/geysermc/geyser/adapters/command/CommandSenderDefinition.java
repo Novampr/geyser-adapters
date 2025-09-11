@@ -23,18 +23,24 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.adapters.fabric.v1_21_5;
+package org.geysermc.geyser.adapters.command;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import org.geysermc.geyser.adapters.CommandManagerAdapter;
-import org.geysermc.geyser.adapters.modded.v1_21_5.GeyserAdapter_v1_21_5;
-import org.geysermc.geyser.adapters.modded.v1_21_5.WorldAdapter_v1_21_5;
+import net.kyori.adventure.text.Component;
+import org.jetbrains.annotations.Nullable;
 
-public class Fabric_v1_21_5 implements ModInitializer {
-    @Override
-    public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STARTING.register(GeyserAdapter_v1_21_5::setServer);
-        CommandManagerAdapter.set(new FabricCommandManagerAdapter_v1_21_5());
-    }
+import java.util.UUID;
+import java.util.function.Consumer;
+
+public interface CommandSenderDefinition {
+    String name();
+
+    void sendMessage(String message);
+
+    void sendMessage(Component message, Consumer<Component> superDefinition);
+
+    boolean isConsole();
+
+    @Nullable UUID playerUuid();
+
+    Object handle();
 }

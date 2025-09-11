@@ -25,16 +25,19 @@
 
 package org.geysermc.geyser.adapters.fabric.v1_21_5;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import org.geysermc.geyser.adapters.CommandManagerAdapter;
-import org.geysermc.geyser.adapters.modded.v1_21_5.GeyserAdapter_v1_21_5;
-import org.geysermc.geyser.adapters.modded.v1_21_5.WorldAdapter_v1_21_5;
+import net.minecraft.commands.CommandSourceStack;
+import org.geysermc.geyser.adapters.modded.v1_21_5.CommandManagerAdapter_v1_21_5;
+import org.incendo.cloud.CommandManager;
+import org.incendo.cloud.SenderMapper;
+import org.incendo.cloud.execution.ExecutionCoordinator;
+import org.incendo.cloud.fabric.FabricServerCommandManager;
 
-public class Fabric_v1_21_5 implements ModInitializer {
+public class FabricCommandManagerAdapter_v1_21_5 extends CommandManagerAdapter_v1_21_5 {
     @Override
-    public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STARTING.register(GeyserAdapter_v1_21_5::setServer);
-        CommandManagerAdapter.set(new FabricCommandManagerAdapter_v1_21_5());
+    public <T> CommandManager<T> getCommandManager(SenderMapper<CommandSourceStack, T> mapper) {
+        return new FabricServerCommandManager<>(
+                ExecutionCoordinator.simpleCoordinator(),
+                mapper
+        );
     }
 }

@@ -47,6 +47,10 @@ dependencies {
 
     api(project(path = ":modded_common_v1_21_5", configuration = "namedElements"))
     shadowCommon(project(path = ":modded_common_v1_21_5", configuration = "transformProductionFabric"))
+
+    compileOnly(project(":common"))
+    modImplementation("org.incendo:cloud-fabric:2.0.0-beta.12")
+    include("org.incendo:cloud-fabric:2.0.0-beta.12")
 }
 
 tasks {
