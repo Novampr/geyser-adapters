@@ -57,5 +57,10 @@ public abstract class CommandManagerAdapter_v1_20_6 extends CommandManagerAdapte
         return getCommandManager(mapper);
     }
 
+    @Override
+    public CommandSenderDefinition getCommandSenderDefinition(ServerPlayer handle, Consumer<String> logger) {
+        return new ModCommandSource(handle.createCommandSourceStack(), logger);
+    }
+
     public abstract <T> CommandManager<T> getCommandManager(SenderMapper<CommandSourceStack, T> mapper);
 }

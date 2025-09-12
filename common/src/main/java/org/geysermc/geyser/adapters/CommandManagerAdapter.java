@@ -41,6 +41,8 @@ public abstract class CommandManagerAdapter<S, P> {
             Consumer<String> logger
     );
 
+    public abstract CommandSenderDefinition getCommandSenderDefinition(P handle, Consumer<String> logger);
+
     public interface CommandSourceConverter<T, S, P> {
         SenderMapper<S, T> getSenderMapper(
                 Class<S> senderClass,

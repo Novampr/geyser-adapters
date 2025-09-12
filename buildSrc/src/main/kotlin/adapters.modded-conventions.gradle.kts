@@ -1,3 +1,6 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import net.fabricmc.loom.task.RemapJarTask
+
 /*
  * Copyright (c) 2019-2025 GeyserMC. http://geysermc.org
  *
@@ -29,10 +32,10 @@ plugins {
     id("dev.architectury.loom")
 }
 
-configurations {
+project.configurations {
     create("shadowCommon") {
         isCanBeResolved = true
-        isCanBeConsumed = false
+        isCanBeConsumed = true
         isCanBeDeclared = true
         isTransitive = false
     }
@@ -46,14 +49,15 @@ tasks.compileJava {
     options.encoding = "UTF-8"
 }
 
-tasks.shadowJar {
+val shadowJar = tasks.named<ShadowJar>("shadowJar") {
     configurations = listOf(project.configurations.getByName("shadowCommon"))
     archiveClassifier = "dev-shadow"
 }
 
-tasks.remapJar {
+tasks.named<RemapJarTask>("remapJar") {
     injectAccessWidener = true
-    dependsOn(tasks.shadowJar)
+    dependsOn(shadowJar)
+    inputFile.set(shadowJar.get().archiveFile)
 }
 
 repositories {
