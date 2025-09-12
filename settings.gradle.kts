@@ -4,6 +4,8 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "geyser-adapters"
 
 include(":common")
+
+// Spigot
 include(":spigot")
 include(":spigot:all")
 include(":spigot:base")
@@ -21,20 +23,25 @@ include(":spigot:v1_21_R1")
 include(":spigot:v1_21_R2")
 include(":spigot:v1_21_R3")
 
+// Paper
 include(":paper")
 include(":paper:all")
 include(":paper:base")
 include(":paper:v766")
 include(":paper:v768")
 
+// Modded
 // For whatever reason, the name cannot be ":modded:v1_21_5:common", the fabric and neoforge modules won't
 // be able to find the module, but if the name is unique like this, it's fine
+
+// 1.21.5+
 include(":modded_common_v1_21_5")
 project(":modded_common_v1_21_5").projectDir = file("modded/v1_21_5/common")
 include(":modded:v1_21_5:fabric")
 include(":modded:v1_21_5:neoforge")
 
-include(":modded_common_v1_21_1")
-project(":modded_common_v1_21_1").projectDir = file("modded/v1_21_1/common")
-include(":modded:v1_21_1:fabric")
-include(":modded:v1_21_1:neoforge")
+// 1.20.6 - 1.21.4
+include(":modded_common_v1_20_6")
+project(":modded_common_v1_20_6").projectDir = file("modded/v1_20_6/common")
+include(":modded:v1_20_6:fabric")
+include(":modded:v1_20_6:neoforge")

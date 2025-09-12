@@ -27,8 +27,8 @@ plugins {
     id("adapters.modded-conventions")
 }
 
-val neoVersion = "21.5.91"
-val metaProperties = minecraftVersion("1.21.5", mapOf("neo_version" to neoVersion))
+val neoVersion = "20.6.138"
+val metaProperties = minecraftVersion("1.20.6", mapOf("neo_version" to neoVersion))
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -46,12 +46,12 @@ architectury {
 dependencies {
     neoForge("net.neoforged:neoforge:$neoVersion")
 
-    api(project(":modded_common_v1_21_5", configuration = "namedElements"))
-    shadowCommon(project(":modded_common_v1_21_5", configuration = "transformProductionNeoForge"))
+    api(project(":modded_common_v1_20_6", configuration = "namedElements"))
+    shadowCommon(project(":modded_common_v1_20_6", configuration = "transformProductionNeoForge"))
 
     compileOnly(project(":common"))
-    modImplementation("org.incendo:cloud-neoforge:2.0.0-beta.12")
-    include("org.incendo:cloud-neoforge:2.0.0-beta.12")
+    modImplementation("org.incendo:cloud-neoforge:2.0.0-beta.10")
+    include("org.incendo:cloud-neoforge:2.0.0-beta.10")
 }
 
 tasks {

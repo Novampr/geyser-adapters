@@ -55,6 +55,7 @@ dependencies {
 
 tasks {
     withType<ProcessResources> {
+        filteringCharset = "UTF-8"
         filesMatching("fabric.mod.json") {
             expand(metaProperties)
         }

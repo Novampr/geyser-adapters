@@ -23,42 +23,20 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-plugins {
-    id("adapters.modded-conventions")
-}
+package org.geysermc.geyser.adapters.modded.v1_20_6;
 
-val neoVersion = "21.5.91"
-val metaProperties = minecraftVersion("1.21.5", mapOf("neo_version" to neoVersion))
+import net.minecraft.server.MinecraftServer;
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+public class GeyserAdapter_v1_20_6 {
+    private static MinecraftServer server;
+
+    public static void setServer(MinecraftServer server) {
+        if (GeyserAdapter_v1_20_6.server != null) throw new IllegalStateException("Server is already defined.");
+
+        GeyserAdapter_v1_20_6.server = server;
     }
-}
 
-architectury {
-    platformSetupLoomIde()
-    neoForge()
-}
-
-dependencies {
-    neoForge("net.neoforged:neoforge:$neoVersion")
-
-    api(project(":modded_common_v1_21_5", configuration = "namedElements"))
-    shadowCommon(project(":modded_common_v1_21_5", configuration = "transformProductionNeoForge"))
-
-    compileOnly(project(":common"))
-    modImplementation("org.incendo:cloud-neoforge:2.0.0-beta.12")
-    include("org.incendo:cloud-neoforge:2.0.0-beta.12")
-}
-
-tasks {
-    withType<ProcessResources> {
-        filteringCharset = "UTF-8"
-        filesMatching("META-INF/neoforge.mods.toml") {
-            expand(metaProperties)
-        }
+    public static MinecraftServer getServer() {
+        return server;
     }
 }

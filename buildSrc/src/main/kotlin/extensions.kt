@@ -61,7 +61,7 @@ fun Project.minecraftVersion(version: String): Map<String, String> {
 
 fun Project.minecraftVersion(version: String, bonusData: Map<String, String>): Map<String, String> {
     val metaProperties = HashMap<String, String>()
-    metaProperties["id"] = "geyser_modded_adapters_${version.replace('.', '_')}"
+    metaProperties["id"] = "geyser_modded_adapters_v${version.replace('.', '_')}"
     metaProperties["minecraft_version"] = version
 
     val fabricLoaderVersion = "0.17.2"

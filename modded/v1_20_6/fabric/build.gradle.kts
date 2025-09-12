@@ -27,8 +27,7 @@ plugins {
     id("adapters.modded-conventions")
 }
 
-val neoVersion = "21.5.91"
-val metaProperties = minecraftVersion("1.21.5", mapOf("neo_version" to neoVersion))
+val metaProperties = minecraftVersion("1.20.6")
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -40,24 +39,24 @@ java {
 
 architectury {
     platformSetupLoomIde()
-    neoForge()
+    fabric()
 }
 
 dependencies {
-    neoForge("net.neoforged:neoforge:$neoVersion")
+    modApi("net.fabricmc.fabric-api:fabric-api:0.100.8+1.20.6")
 
-    api(project(":modded_common_v1_21_5", configuration = "namedElements"))
-    shadowCommon(project(":modded_common_v1_21_5", configuration = "transformProductionNeoForge"))
+    api(project(path = ":modded_common_v1_20_6", configuration = "namedElements"))
+    shadowCommon(project(path = ":modded_common_v1_20_6", configuration = "transformProductionFabric"))
 
     compileOnly(project(":common"))
-    modImplementation("org.incendo:cloud-neoforge:2.0.0-beta.12")
-    include("org.incendo:cloud-neoforge:2.0.0-beta.12")
+    modImplementation("org.incendo:cloud-fabric:2.0.0-beta.10")
+    include("org.incendo:cloud-fabric:2.0.0-beta.10")
 }
 
 tasks {
     withType<ProcessResources> {
         filteringCharset = "UTF-8"
-        filesMatching("META-INF/neoforge.mods.toml") {
+        filesMatching("fabric.mod.json") {
             expand(metaProperties)
         }
     }

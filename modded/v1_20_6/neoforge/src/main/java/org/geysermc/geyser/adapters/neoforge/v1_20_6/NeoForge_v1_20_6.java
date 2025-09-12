@@ -23,42 +23,19 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-plugins {
-    id("adapters.modded-conventions")
-}
+package org.geysermc.geyser.adapters.neoforge.v1_20_6;
 
-val neoVersion = "21.5.91"
-val metaProperties = minecraftVersion("1.21.5", mapOf("neo_version" to neoVersion))
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.geysermc.geyser.adapters.modded.v1_20_6.GeyserAdapter_v1_20_6;
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-architectury {
-    platformSetupLoomIde()
-    neoForge()
-}
-
-dependencies {
-    neoForge("net.neoforged:neoforge:$neoVersion")
-
-    api(project(":modded_common_v1_21_5", configuration = "namedElements"))
-    shadowCommon(project(":modded_common_v1_21_5", configuration = "transformProductionNeoForge"))
-
-    compileOnly(project(":common"))
-    modImplementation("org.incendo:cloud-neoforge:2.0.0-beta.12")
-    include("org.incendo:cloud-neoforge:2.0.0-beta.12")
-}
-
-tasks {
-    withType<ProcessResources> {
-        filteringCharset = "UTF-8"
-        filesMatching("META-INF/neoforge.mods.toml") {
-            expand(metaProperties)
-        }
+@Mod("geyser_modded_adapters_1_21_5")
+public class NeoForge_v1_20_6 {
+    public NeoForge_v1_20_6(IEventBus bus, ModContainer modContainer) {
+        bus.addListener(ServerStartingEvent.class, event -> {
+            GeyserAdapter_v1_20_6.setServer(event.getServer());
+        });
     }
 }
