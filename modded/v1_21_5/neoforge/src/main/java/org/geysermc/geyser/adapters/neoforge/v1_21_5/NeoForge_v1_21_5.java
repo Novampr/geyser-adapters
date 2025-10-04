@@ -30,6 +30,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.geysermc.geyser.adapters.CommandManagerAdapter;
+import org.geysermc.geyser.adapters.PlatformAdapters;
 import org.geysermc.geyser.adapters.modded.v1_21_5.GeyserAdapter_v1_21_5;
 import org.geysermc.geyser.adapters.modded.v1_21_5.WorldAdapter_v1_21_5;
 
@@ -40,6 +41,7 @@ public class NeoForge_v1_21_5 {
             GeyserAdapter_v1_21_5.setServer(event.getServer());
         });
 
-        CommandManagerAdapter.set(new NeoForgeCommandManagerAdapter_v1_21_5());
+        PlatformAdapters.setWorldAdapter(new WorldAdapter_v1_21_5());
+        PlatformAdapters.setCommandManagerAdapter(new NeoForgeCommandManagerAdapter_v1_21_5());
     }
 }

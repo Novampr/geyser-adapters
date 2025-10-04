@@ -52,16 +52,4 @@ public abstract class CommandManagerAdapter<S, P> {
                 Function<S, T> commandSourceLookup
         );
     }
-
-    // This works because sub-mods are only loaded if the version matches correctly
-    // So the sub-mod can just set this field and the main mod can access this class
-    private static CommandManagerAdapter<?, ?> COMMAND_MANAGER_ADAPTER;
-
-    public static CommandManagerAdapter<?, ?> get() {
-        return COMMAND_MANAGER_ADAPTER;
-    }
-
-    public static void set(CommandManagerAdapter<?, ?> commandManagerAdapter) {
-        COMMAND_MANAGER_ADAPTER = commandManagerAdapter;
-    }
 }

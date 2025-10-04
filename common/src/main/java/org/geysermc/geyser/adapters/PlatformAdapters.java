@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2025 GeyserMC. http://geysermc.org
+ * Copyright (c) 2025 GeyserMC. http://geysermc.org
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,30 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.adapters.fabric.v1_20_6;
+package org.geysermc.geyser.adapters;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import org.geysermc.geyser.adapters.CommandManagerAdapter;
-import org.geysermc.geyser.adapters.PlatformAdapters;
-import org.geysermc.geyser.adapters.modded.v1_20_6.GeyserAdapter_v1_20_6;
-import org.geysermc.geyser.adapters.modded.v1_20_6.WorldAdapter_v1_20_6;
+public final class PlatformAdapters {
+    private PlatformAdapters() {} // never to be
 
-public class Fabric_v1_20_6 implements ModInitializer {
-    @Override
-    public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STARTING.register(GeyserAdapter_v1_20_6::setServer);
-        PlatformAdapters.setWorldAdapter(new WorldAdapter_v1_20_6());
-        PlatformAdapters.setCommandManagerAdapter(new FabricCommandManagerAdapter_v1_20_6());
+    private static CommandManagerAdapter<?, ?> COMMAND_MANAGER_ADAPTER;
+
+    public static CommandManagerAdapter<?, ?> getCommandManagerAdapter() {
+        return COMMAND_MANAGER_ADAPTER;
+    }
+
+    public static void setCommandManagerAdapter(CommandManagerAdapter<?, ?> commandManagerAdapter) {
+        if (COMMAND_MANAGER_ADAPTER != null) throw new IllegalStateException("CommandManagerAdapter has already been registered.");
+        COMMAND_MANAGER_ADAPTER = commandManagerAdapter;
+    }
+
+    private static WorldAdapter<?> WORLD_ADAPTER;
+
+    public static WorldAdapter<?> getWorldAdapter() {
+        return WORLD_ADAPTER;
+    }
+
+    public static void setWorldAdapter(WorldAdapter<?> worldAdapter) {
+        if (COMMAND_MANAGER_ADAPTER != null) throw new IllegalStateException("WorldAdapter has already been registered.");
+        WORLD_ADAPTER = worldAdapter;
     }
 }

@@ -28,6 +28,7 @@ package org.geysermc.geyser.adapters.fabric.v1_21_5;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.geysermc.geyser.adapters.CommandManagerAdapter;
+import org.geysermc.geyser.adapters.PlatformAdapters;
 import org.geysermc.geyser.adapters.modded.v1_21_5.GeyserAdapter_v1_21_5;
 import org.geysermc.geyser.adapters.modded.v1_21_5.WorldAdapter_v1_21_5;
 
@@ -35,6 +36,7 @@ public class Fabric_v1_21_5 implements ModInitializer {
     @Override
     public void onInitialize() {
         ServerLifecycleEvents.SERVER_STARTING.register(GeyserAdapter_v1_21_5::setServer);
-        CommandManagerAdapter.set(new FabricCommandManagerAdapter_v1_21_5());
+        PlatformAdapters.setWorldAdapter(new WorldAdapter_v1_21_5());
+        PlatformAdapters.setCommandManagerAdapter(new FabricCommandManagerAdapter_v1_21_5());
     }
 }
