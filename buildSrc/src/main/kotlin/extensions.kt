@@ -55,13 +55,13 @@ import org.gradle.language.jvm.tasks.ProcessResources
  * @link https://github.com/GeyserMC/Geyser
  */
 
-fun Project.minecraftVersion(version: String): Map<String, String> {
-    return this.minecraftVersion(version, HashMap())
+fun Project.minecraftVersion(version: String, type: String): Map<String, String> {
+    return this.minecraftVersion(version, type, HashMap())
 }
 
-fun Project.minecraftVersion(version: String, bonusData: Map<String, String>): Map<String, String> {
+fun Project.minecraftVersion(version: String, type: String, bonusData: Map<String, String>): Map<String, String> {
     val metaProperties = HashMap<String, String>()
-    metaProperties["id"] = "geyser_modded_adapters_v${version.replace('.', '_')}"
+    metaProperties["id"] = "geyser_modded_${type}_adapters_v${version.replace('.', '_')}"
     metaProperties["minecraft_version"] = version
 
     val fabricLoaderVersion = "0.17.2"
@@ -80,7 +80,7 @@ fun Project.minecraftVersion(version: String, bonusData: Map<String, String>): M
     metaProperties.putAll(bonusData)
     metaProperties.putAll(
         mapOf(
-            "name" to "Geyser Mod Adapter",
+            "name" to "Geyser Mod Adapter (${type})",
             "description" to "An adapter to access version-specific data in modded versions of Minecraft.",
             "author" to "GeyserMC",
             "website" to "https://geysermc.org",
