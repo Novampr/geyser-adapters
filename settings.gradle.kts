@@ -48,7 +48,7 @@ fun defineModdedAdapters(version: String, type: String) {
 // Modded World Adapters
 // 1.21.3+
 defineModdedAdapters("1.21.3", "world")
-// 1.16.5 - 1.21.2 (excellent comptibility! thanks Mojang :3)
+// 1.18.2 - 1.21.2 (excellent comptibility! thanks Mojang :3)
 // Use 1.20.6, since we *can* benefit from biome suggestions and min world height,
 // but on older versions we can leave it/use a default
 defineModdedAdapters("1.20.6", "world")

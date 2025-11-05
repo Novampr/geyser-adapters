@@ -44,13 +44,7 @@ import java.util.stream.Stream;
 public class WorldAdapter_v1_20_6 extends WorldAdapter<ServerLevel> {
     @Override
     public int getBlockAt(ServerLevel world, int x, int y, int z) {
-        int minHeight = 0;
-
-        try {
-            minHeight = world.getMinBuildHeight(); // Modern features, not available in 1.16.5
-        } catch (NoSuchMethodError ignored) {}
-
-        if (y < minHeight) {
+        if (y < world.getMinBuildHeight()) {
             return 0;
         }
 
