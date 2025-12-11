@@ -3,8 +3,8 @@ plugins {
 }
 
 dependencies {
-    implementation("io.papermc.paperweight:paperweight-userdev:1.7.7")
-    implementation("com.github.johnrengelman", "shadow", "8.1.1")
+    implementation("io.papermc.paperweight.userdev:io.papermc.paperweight.userdev.gradle.plugin:2.0.0-beta.19")
+    implementation("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:9.3.0")
 }
 
 repositories {
